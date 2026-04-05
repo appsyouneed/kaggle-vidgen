@@ -1,0 +1,708 @@
+/usr/local/lib/python3.12/dist-packages/torch_xla/__init__.py:258: UserWarning: `tensorflow` can conflict with `torch-xla`. Prefer `tensorflow-cpu` when using PyTorch/XLA. To silence this warning, `pip uninstall -y tensorflow && pip install tensorflow-cpu`. If you are in a notebook environment such as Colab or Kaggle, restart your notebook runtime afterwards.
+  warnings.warn(
+WARNING:root:Defaulting to PJRT_DEVICE=CPU
+/content/app.py:26: DeprecationWarning: Use torch_xla.device instead
+  device = xm.xla_device()
+2026-04-05 06:14:49.118677: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1775369689.434879    5587 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1775369689.529241    5587 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1775369690.169179    5587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1775369690.169244    5587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1775369690.169254    5587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1775369690.169261    5587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+Clearing TPU memory from previous runs...
+model_index.json: 100% 709/709 [00:00<00:00, 3.15MB/s]
+Fetching 22 files:   0% 0/22 [00:00<?, ?it/s]
+tokenizer/tokenizer.json:   0% 0.00/16.8M [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:00<?, ?B/s]
+
+
+
+
+model.safetensors.index.json: 22.5kB [00:00, 23.4MB/s]
+
+
+
+
+
+config.json: 100% 806/806 [00:00<00:00, 4.91MB/s]
+
+
+
+
+
+special_tokens_map.json: 7.08kB [00:00, 12.8MB/s]
+
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:00<?, ?B/s]
+tokenizer/tokenizer.json:   0% 0.00/16.8M [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:00<?, ?B/s]
+
+
+
+
+scheduler_config.json: 100% 820/820 [00:00<00:00, 5.10MB/s]
+Fetching 22 files:   9% 2/22 [00:00<00:08,  2.32it/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:00<?, ?B/s]
+tokenizer/tokenizer.json:   0% 0.00/16.8M [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:00<?, ?B/s]
+tokenizer/tokenizer.json:   0% 0.00/16.8M [00:00<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:00<?, ?B/s]
+
+
+
+
+
+tokenizer_config.json: 61.8kB [00:00, 82.6MB/s]
+
+
+
+
+
+
+config.json: 100% 558/558 [00:00<00:00, 3.23MB/s]
+
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:00<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+tokenizer/tokenizer.json:   0% 0.00/16.8M [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:00<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:01<?, ?B/s]
+tokenizer/tokenizer.json:   0% 0.00/16.8M [00:01<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:01<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:01<?, ?B/s]
+tokenizer/tokenizer.json:   0% 0.00/16.8M [00:01<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:01<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:01<?, ?B/s]
+tokenizer/tokenizer.json: 100% 16.8M/16.8M [00:01<00:00, 11.6MB/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:01<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:01<?, ?B/s]
+(…)ion_pytorch_model.safetensors.index.json: 97.3kB [00:00, 30.1MB/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:01<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:01<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:01<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:00<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:02<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:02<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:02<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:01<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:02<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:02<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:02<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:01<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:02<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:02<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   1% 67.1M/9.97G [00:01<00:29, 337MB/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:02<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:01<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:02<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:02<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:02<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:01<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:02<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:02<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:00<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:02<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:01<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:03<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:03<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:00<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:03<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:02<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:03<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:03<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/8.72G [00:02<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:03<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:03<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   1% 67.1M/8.72G [00:02<00:23, 362MB/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:03<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:03<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:03<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:03<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:01<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:03<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:04<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:04<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:02<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:04<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:01<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:04<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:04<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:02<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:04<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:04<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:04<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:02<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:04<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:04<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:03<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:04<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:02<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:04<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:04<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:04<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:04<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:02<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:04<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:02<?, ?B/s]
+
+text_encoder/model-00002-of-00003.safete(…):   0% 0.00/4.98G [00:05<?, ?B/s]
+
+
+
+
+
+transformer/diffusion_pytorch_model-0000(…):   0% 0.00/9.95G [00:04<?, ?B/s]
+
+
+text_encoder/model-00001-of-00003.safete(…):   0% 0.00/4.94G [00:05<?, ?B/s]
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.97G [00:03<?, ?B/s]
+
+
+
+text_encoder/model-00003-of-00003.safete(…):   0% 0.00/1.44G [00:05<?, ?B/s]
+
+
+
+
+
+
+
+transformer_2/diffusion_pytorch_model-00(…):   0% 0.00/9.95G [00:02<?, ?B/s]
