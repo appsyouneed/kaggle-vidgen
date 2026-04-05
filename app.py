@@ -48,9 +48,6 @@ from diffusers.utils.export_utils import export_to_video
 
 from torchao.quantization import quantize_, Float8DynamicActivationFloat8WeightConfig, Int8WeightOnlyConfig
 
-# Set HuggingFace token
-os.environ["HF_TOKEN"] = "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"
-
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
@@ -277,10 +274,7 @@ def interpolate_bits(frames_np, multiplier=2, scale=1.0):
 # WAN
 
 ORG_NAME = "TestOrganizationPleaseIgnore"
-# MODEL_ID = "Wan-AI/Wan2.2-I2V-A14B-Diffusers"
-MODEL_ID = os.getenv("REPO_ID") or random.choice(
-    list(list_models(author=ORG_NAME, filter='diffusers:WanImageToVideoPipeline'))
-).modelId
+MODEL_ID = "Wan-AI/Wan2.2-I2V-A14B-Diffusers"
 CACHE_DIR = os.path.expanduser("/kaggle/working/.cache/huggingface/")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
