@@ -4,15 +4,28 @@
 
 **IMPORTANT: Enable dual T4 GPUs first!**
 - Settings → Accelerator → GPU T4 x2
+- Settings → Internet → Enable (required for initial setup)
 
 Then run these commands in your Kaggle notebook:
 
 ```python
-# 1. Setup environment
-!bash setup.sh
+# 1. Clone the repository
+!git clone https://github.com/appsyouneed/kaggle-vidgen.git
+!cd kaggle-vidgen
 
-# 2. Run the app
-!python app.py
+# 2. Run setup
+!cd kaggle-vidgen && bash setup.sh
+
+# 3. Run the app
+!cd kaggle-vidgen && python3 app.py
+```
+
+The Gradio interface will display a public URL - click it to access the app.
+
+## Alternative: One-Line Setup
+
+```python
+!git clone https://github.com/appsyouneed/kaggle-vidgen.git && cd kaggle-vidgen && bash setup.sh && python3 app.py
 ```
 
 ## Files Included
@@ -31,7 +44,7 @@ Then run these commands in your Kaggle notebook:
 - **CPU Offloading**: Memory efficient on 16GB per GPU
 - **FP8 Quantization**: Faster inference
 - **Session Persistence**: Models cached in /kaggle/working
-- **Pre-configured Token**: Faster HuggingFace downloads
+- **No Token Required**: Public model access
 
 ## Performance
 
@@ -51,3 +64,28 @@ Then run these commands in your Kaggle notebook:
 - Sessions timeout after 12 hours of inactivity
 - Internet access must be enabled for initial model download
 - Models persist in /kaggle/working during session
+- First run downloads ~100GB of models (10-15 minutes)
+
+## Troubleshooting
+
+**If setup fails:**
+```python
+# Check GPU availability
+!nvidia-smi
+
+# Verify internet is enabled
+!ping -c 3 huggingface.co
+
+# Re-run setup
+!cd kaggle-vidgen && bash setup.sh
+```
+
+**If app crashes:**
+```python
+# Check CUDA is available
+!python3 -c "import torch; print(torch.cuda.is_available())"
+
+# Clear cache and restart
+!rm -rf /kaggle/working/.cache
+!cd kaggle-vidgen && bash setup.sh
+```

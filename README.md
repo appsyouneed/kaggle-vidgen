@@ -14,21 +14,21 @@ short_description: Generate video from image with text prompt on dual T4 GPUs
 
 This version is optimized to run on Kaggle with 2x T4 GPUs (32GB total VRAM).
 
-## Setup Instructions
+## Quick Setup
 
-1. In Kaggle: Settings → Accelerator → GPU T4 x2
-2. Upload all files to your Kaggle notebook
-3. Run setup:
-```bash
-!bash setup.sh
+1. **Enable dual T4 GPUs**: Settings → Accelerator → GPU T4 x2
+2. **Enable Internet**: Settings → Internet → Enable
+3. **Run in Kaggle notebook**:
+
+```python
+!git clone https://github.com/appsyouneed/kaggle-vidgen.git && cd kaggle-vidgen && bash setup.sh && python3 app.py
 ```
 
-4. Run the app:
-```bash
-!python app.py
-```
+4. Click the Gradio public URL to access the app
 
-The Gradio interface will provide a public URL to access the app.
+## Repository
+
+GitHub: https://github.com/appsyouneed/kaggle-vidgen
 
 ## Features
 
@@ -37,10 +37,11 @@ The Gradio interface will provide a public URL to access the app.
 - CPU offloading for memory efficiency
 - FP8 quantization for faster inference
 - Models cached in /kaggle/working for session persistence
+- No authentication token required
 
 ## Performance
 
-With dual T4 GPUs, you can:
+With dual T4 GPUs:
 - Process 2 videos simultaneously
-- ~2x throughput compared to single GPU
 - ~30-45 seconds per video
+- ~2x throughput compared to single GPU
