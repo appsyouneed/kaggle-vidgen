@@ -10,6 +10,36 @@ import time
 import gc
 import uuid
 import threading
+
+# Suppress all progress bars before importing tqdm
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
+os.environ["TQDM_DISABLE"] = "1"
+
+# Monkey patch tqdm to be silent
+import io
+class DummyTqdm:
+    def __init__(self, *args, **kwargs):
+        self.iterable = args[0] if args else None
+    def __iter__(self):
+        return iter(self.iterable) if self.iterable else iter([])
+    def __enter__(self):
+        return self
+    def __exit__(self, *args):
+        pass
+    def update(self, *args, **kwargs):
+        pass
+    def close(self):
+        pass
+    def set_description(self, *args, **kwargs):
+        pass
+
+import sys
+class TqdmModule:
+    tqdm = DummyTqdm
+    auto = type('auto', (), {'tqdm': DummyTqdm})()
+sys.modules['tqdm'] = TqdmModule()
+sys.modules['tqdm.auto'] = TqdmModule.auto
+
 from tqdm import tqdm
 
 # Set temp directory before torch imports
