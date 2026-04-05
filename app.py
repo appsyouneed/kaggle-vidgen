@@ -151,6 +151,7 @@ else:
     print("  ✓ RIFE model already present")
 
 sys.path.append(os.path.join(os.getcwd(), "train_log"))
+sys.path.insert(0, os.getcwd())
 
 from train_log.RIFE_HDv3 import Model
 device = torch.device("cuda")
