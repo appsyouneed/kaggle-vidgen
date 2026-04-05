@@ -123,19 +123,26 @@ def clear_vram():
 
 
 # Clear any existing CUDA memory from previous runs
-print("Clearing GPU memory from previous runs...")
+print("\n" + "="*60)
+print("INITIALIZING WAN 2.2 14B IMAGE-TO-VIDEO")
+print("="*60)
+print("✓ Clearing GPU memory...")
 clear_vram()
 torch.cuda.reset_peak_memory_stats()
 
 # RIFE
+print("✓ Checking RIFE model...")
 if not os.path.exists("RIFEv4.26_0921.zip"):
-    print("Downloading RIFE Model...")
+    print("  Downloading RIFE Model...")
     subprocess.run([
         "wget", "-q",
         "https://huggingface.co/r3gm/RIFE/resolve/main/RIFEv4.26_0921.zip",
         "-O", "RIFEv4.26_0921.zip"
     ], check=True)
-    subprocess.run(["unzip", "-o", "RIFEv4.26_0921.zip"], check=True)
+    subprocess.run(["unzip", "-o", "-q", "RIFEv4.26_0921.zip"], check=True)
+    print("  ✓ RIFE model downloaded")
+else:
+    print("  ✓ RIFE model already present")
 
 sys.path.append(os.path.join(os.getcwd(), "train_log"))
 
@@ -161,6 +168,7 @@ def get_assigned_pipeline():
 rife_model = Model()
 rife_model.load_model("train_log", -1)
 rife_model.eval()
+print("✓ RIFE model loaded\n")
 
 
 @torch.no_grad()
@@ -323,40 +331,46 @@ pipe = WanImageToVideoPipeline.from_pretrained(
     torch_dtype=torch.bfloat16,
     cache_dir=CACHE_DIR,
     local_files_only=False,
+    resume_download=True,
 )
+
+print("\n" + "="*60)
+print("Creating 2 pipeline instances for dual T4 GPUs")
+print("="*60)
+
+print("\n" + "="*60)
+print("Creating 2 pipeline instances for dual T4 GPUs")
+print("="*60)
 
 # Create 2 pipeline instances for dual T4 GPUs
 pipes = []
 original_schedulers = []
 
-print("Creating 2 pipeline instances for dual T4 GPUs")
-
 # Detect GPU VRAM
 gpu_vram_gb = torch.cuda.get_device_properties(0).total_memory / (1024**3)
-print(f"Detected GPU VRAM: {gpu_vram_gb:.1f} GB per GPU")
+print(f"✓ Detected GPU VRAM: {gpu_vram_gb:.1f} GB per GPU")
 
 # Apply quantization BEFORE moving to GPU to avoid OOM
-print("Applying quantization on CPU...")
+print("✓ Applying quantization on CPU...")
 quantize_(pipe.text_encoder, Int8WeightOnlyConfig())
 quantize_(pipe.transformer, Float8DynamicActivationFloat8WeightConfig())
 quantize_(pipe.transformer_2, Float8DynamicActivationFloat8WeightConfig())
 
 # Enable VAE optimizations
-print("Enabling VAE slicing and tiling for memory optimization...")
+print("✓ Enabling VAE slicing and tiling...")
 pipe.vae.enable_slicing()
 pipe.vae.enable_tiling()
 
 # T4 has 16GB, use CPU offloading
-print("Enabling model CPU offloading for T4 GPUs...")
+print("✓ Enabling model CPU offloading for GPU 0...")
 pipe.enable_model_cpu_offload()
-print("Model loaded with CPU offloading enabled on GPU 0")
 
 pipes.append(pipe)
 original_schedulers.append(copy.deepcopy(pipe.scheduler))
 _scheduler_locks.append(threading.Lock())
 
 # Create second pipeline instance for GPU 1
-print("Creating second pipeline instance for GPU 1...")
+print("✓ Creating second pipeline instance for GPU 1...")
 pipe2 = WanImageToVideoPipeline.from_pretrained(
     MODEL_ID,
     torch_dtype=torch.bfloat16,
@@ -371,11 +385,14 @@ quantize_(pipe2.transformer_2, Float8DynamicActivationFloat8WeightConfig())
 pipe2.vae.enable_slicing()
 pipe2.vae.enable_tiling()
 pipe2.enable_model_cpu_offload(gpu_id=1)
-print("Model loaded with CPU offloading enabled on GPU 1")
 
 pipes.append(pipe2)
 original_schedulers.append(copy.deepcopy(pipe2.scheduler))
 _scheduler_locks.append(threading.Lock())
+
+print("\n" + "="*60)
+print(f"✓ Total pipeline instances: {len(pipes)}")
+print("="*60 + "\n")
 
 print(f"Total pipeline instances: {len(pipes)}")
 
@@ -407,10 +424,9 @@ for i, lora in enumerate(LORA_MODELS):
         
             current_pipe.unload_lora_weights()
 
-        print(f"Applied LoRA to pipeline: {lora['high_tr']}, hs={lora['high_scale']}/ls={lora['low_scale']}, {i+1}/{len(LORA_MODELS)}") 
+        print(f"✓ Applied LoRA {i+1}/{len(LORA_MODELS)}: {lora['high_tr']}")
     except Exception as e:
-        print("Error:", str(e))
-        print("Failed LoRA:", name_high_tr)
+        print(f"✗ Failed LoRA: {name_high_tr} - {str(e)}")
         for current_pipe in pipes:
             current_pipe.unload_lora_weights()
 
@@ -783,6 +799,9 @@ with gr.Blocks(delete_cache=(3600, 10800)) as demo:
     )
 
 if __name__ == "__main__":
+    print("\n" + "="*60)
+    print("STARTING GRADIO INTERFACE")
+    print("="*60 + "\n")
     demo.queue(max_size=30, default_concurrency_limit=1).launch(
         server_name="0.0.0.0",
         server_port=7860,
