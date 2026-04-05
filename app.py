@@ -10,36 +10,6 @@ import time
 import gc
 import uuid
 import threading
-
-# Suppress all progress bars before importing tqdm
-os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
-os.environ["TQDM_DISABLE"] = "1"
-
-# Monkey patch tqdm to be silent
-import io
-class DummyTqdm:
-    def __init__(self, *args, **kwargs):
-        self.iterable = args[0] if args else None
-    def __iter__(self):
-        return iter(self.iterable) if self.iterable else iter([])
-    def __enter__(self):
-        return self
-    def __exit__(self, *args):
-        pass
-    def update(self, *args, **kwargs):
-        pass
-    def close(self):
-        pass
-    def set_description(self, *args, **kwargs):
-        pass
-
-import sys
-class TqdmModule:
-    tqdm = DummyTqdm
-    auto = type('auto', (), {'tqdm': DummyTqdm})()
-sys.modules['tqdm'] = TqdmModule()
-sys.modules['tqdm.auto'] = TqdmModule.auto
-
 from tqdm import tqdm
 
 # Set temp directory before torch imports
@@ -58,6 +28,15 @@ torch.backends.cudnn.benchmark = True
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 torch.set_num_threads(8)
+
+# Patch tqdm AFTER torch imports to avoid breaking torch._dynamo
+import tqdm as tqdm_module
+_original_tqdm = tqdm_module.tqdm
+def _silent_tqdm(*args, **kwargs):
+    kwargs['disable'] = True
+    return _original_tqdm(*args, **kwargs)
+tqdm_module.tqdm = _silent_tqdm
+tqdm_module.auto.tqdm = _silent_tqdm
 torch.set_num_interop_threads(4)
 from huggingface_hub import list_models
 from torch.nn import functional as F
