@@ -53,6 +53,7 @@ os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ["HF_HUB_DISABLE_EXPERIMENTAL_WARNING"] = "1"
 os.environ["HF_HUB_DISABLE_IMPLICIT_TOKEN"] = "1"
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
 os.environ["TRANSFORMERS_CACHE"] = "/kaggle/working/.cache/huggingface"
 os.environ["HF_HOME"] = "/kaggle/working/.cache/huggingface"
 os.environ["CUDA_LAUNCH_BLOCKING"] = "0"
@@ -138,8 +139,8 @@ if not os.path.exists("RIFEv4.26_0921.zip"):
         "wget", "-q",
         "https://huggingface.co/r3gm/RIFE/resolve/main/RIFEv4.26_0921.zip",
         "-O", "RIFEv4.26_0921.zip"
-    ], check=True)
-    subprocess.run(["unzip", "-o", "-q", "RIFEv4.26_0921.zip"], check=True)
+    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["unzip", "-o", "-q", "RIFEv4.26_0921.zip"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print("  ✓ RIFE model downloaded")
 else:
     print("  ✓ RIFE model already present")
@@ -326,6 +327,12 @@ SCHEDULER_MAP = {
     "DPMSolverSinglestep": DPMSolverSinglestepScheduler,
 }
 
+print("\n" + "="*60)
+print("LOADING WAN 2.2 14B MODEL")
+print("="*60)
+print("⏳ Downloading model files (this may take 10-15 minutes on first run)...")
+print("   Please wait, progress bars are disabled to reduce output clutter.\n")
+
 pipe = WanImageToVideoPipeline.from_pretrained(
     MODEL_ID,
     torch_dtype=torch.bfloat16,
@@ -334,8 +341,9 @@ pipe = WanImageToVideoPipeline.from_pretrained(
     resume_download=True,
 )
 
+print("\n✓ Model files loaded successfully!")
 print("\n" + "="*60)
-print("Creating 2 pipeline instances for dual T4 GPUs")
+print("CREATING PIPELINE INSTANCES")
 print("="*60)
 
 print("\n" + "="*60)
