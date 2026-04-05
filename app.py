@@ -10,6 +10,11 @@ import time
 import gc
 import uuid
 import threading
+
+# Set environment to suppress progress bars
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
+os.environ["TQDM_DISABLE"] = "1"
+
 from tqdm import tqdm
 
 # Set temp directory before torch imports
@@ -28,15 +33,6 @@ torch.backends.cudnn.benchmark = True
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 torch.set_num_threads(8)
-
-# Patch tqdm AFTER torch imports to avoid breaking torch._dynamo
-import tqdm as tqdm_module
-_original_tqdm = tqdm_module.tqdm
-def _silent_tqdm(*args, **kwargs):
-    kwargs['disable'] = True
-    return _original_tqdm(*args, **kwargs)
-tqdm_module.tqdm = _silent_tqdm
-tqdm_module.auto.tqdm = _silent_tqdm
 torch.set_num_interop_threads(4)
 from huggingface_hub import list_models
 from torch.nn import functional as F
